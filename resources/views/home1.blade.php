@@ -131,7 +131,7 @@
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>GID</th>
+                    <th>ID</th>
                     <th>No UPT IMB</th>
                     <th>No IMB</th>
                     <th>No SKRK</th>
@@ -315,7 +315,7 @@
 			"data":{ _token: "{{csrf_token()}}"}
 			},
 			"columns": [
-			{data: 'gid', name: 'gid'},
+			{data: 'id_imb', name: 'id_imb'},
 			{data: 'no_upt_imb'},
       {data: 'no_imb'},
       {data: 'no_skrk'},
@@ -329,16 +329,15 @@
 			],
 		});
   }
-  function show_json(gid){
-    // console.log($('#gid').val(data.gid));
-    console.log(gid)
+  function show_json(id_imb){
+    console.log(id_imb)
     $.ajax({
         type: "GET",
         headers: {
           "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
           "Authorization":"Bearer " + localStorage.getItem("token")
         },
-        url: baseUrl+"api/skrk/show_json/"+gid,
+        url: baseUrl+"api/skrk/show_json/"+id_imb,
         success: function (response) {
           res = response;
           if (res.no_imb == null) {res.no_imb = ""}
@@ -447,16 +446,15 @@
         }
     });
   }
-  function edit_json(gid){
-    // console.log($('#gid').val(data.gid));
-    console.log(gid)
+  function edit_json(id_imb){
+    console.log(id_imb)
     $.ajax({
         type: "GET",
         headers: {
           "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
           "Authorization":"Bearer " + localStorage.getItem("token")
         },
-        url: baseUrl+"api/skrk/show_json/"+gid,
+        url: baseUrl+"api/skrk/show_json/"+id_imb,
         success: function (response) {
           res = response;
           if (res.no_upt == null) {res.no_upt = ""}
@@ -485,12 +483,12 @@
           console.log(res);
             $('#edit-modal').html(
               `
-              <form action="`+baseUrl+`"api/skrk/store_json/"`+gid+`" id="input-skrk" method="POST" enctype="multipart/form-data">
+              <form action="`+baseUrl+`"api/skrk/store_json/"`+id_imb+`" id="input-skrk" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="emp_scan_skrk" id="emp_scan_skrk">
                 <input type="hidden" name="emp_scan_imb" id="emp_scan_imb">
                 <input type="hidden" name="emp_scan_zoning" id="emp_scan_zoning">
                 <input type="hidden" name="emp_scan_gamba" id="emp_scan_gamba">
-                <input type="hidden" name="gid" id="gid" class="form-control" value="`+res.gid+`">
+                <input type="hidden" name="id_imb" id="id_imb" class="form-control" value="`+res.id_imb+`">
                 <div class="form-group">
                     <label for="inputProjectLeader">No UPT SKRK</label>
                     <input type="text" name="no_upt" id="no_upt" class="form-control" value="`+res.no_upt+`">
@@ -602,16 +600,16 @@
             $('.modal-footer-edit').html(
               `
               <button type="button" class="btn btn-default ml-3" data-dismiss="modal">Close</button>
-              <button type="button" onclick="store_json(`+gid+`)" class="btn btn-success float-right mb-3 mr-3 toastrDefaultSuccess">Save changes</button>
+              <button type="button" onclick="store_json(`+id_imb+`)" class="btn btn-success float-right mb-3 mr-3 toastrDefaultSuccess">Save changes</button>
               </form>
               `
             )
         }
     });
   }
-  function store_json(gid){
+  function store_json(id_imb){
     var data = {
-      gid: $("#gid").val(),
+      id_imb: $("#id_imb").val(),
       no_upt_imb: $("#no_upt_imb").val(),
       kelurahan: $("#kelurahan").val(),
       kecamatan: $("#kecamatan").val(),
@@ -630,24 +628,24 @@
           "Authorization":"Bearer " + localStorage.getItem("token")
         },
         data: fd,
-        url: baseUrl+"api/skrk/store_json/"+gid,
+        url: baseUrl+"api/skrk/store_json/"+id_imb,
         success: function (response) {
           $('#modal-lg').modal('hide')
           table()
         }
     });
   }
-  function alert(gid) {
+  function alert(id_imb) {
     $('.modal-footer-alert').html(
       `
         <button type="button" class="btn btn-default ml-3" data-dismiss="modal">Close</button>
-        <button type="button" onclick="delete_json(`+gid+`)" class="btn btn-danger float-right mb-3 mr-3">Hapus</button>
+        <button type="button" onclick="delete_json(`+id_imb+`)" class="btn btn-danger float-right mb-3 mr-3">Hapus</button>
       `
     )
   }
-  function delete_json(gid){
+  function delete_json(id_imb){
     $('#modal-sm').modal('hide')
-    console.log(gid)
+    console.log(id_imb)
     alert('delete');
     $.ajax({
         type: "DELETE",
@@ -656,7 +654,7 @@
           "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
           "Authorization":"Bearer " + localStorage.getItem("token")
         },
-        url: baseUrl+"api/skrk/delete_json/"+gid,
+        url: baseUrl+"api/skrk/delete_json/"+id_imb,
         success: function (response) {
           table()
         }

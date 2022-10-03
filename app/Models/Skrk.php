@@ -9,7 +9,7 @@ class Skrk extends Model
 {
     use HasFactory;
 
-    protected $primarykey = 'gid';
+    protected $primarykey = 'id_imb';
 
     protected $guarded = [];
 
@@ -17,5 +17,5 @@ class Skrk extends Model
 
     // public $incrementing = false;
 
-    protected $table = 'juli';
+    protected $table = 'imb';
 }

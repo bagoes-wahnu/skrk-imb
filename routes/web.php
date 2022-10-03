@@ -19,4 +19,4 @@ use App\Http\Controllers\HomeController;
 // });
 
 Route::get('/', [HomeController::class,'index']);
-Route::get('/show/{gid}', [HomeController::class,'show'])->name('show');
+Route::get('/show/{id_imb}', [HomeController::class,'show'])->name('show');

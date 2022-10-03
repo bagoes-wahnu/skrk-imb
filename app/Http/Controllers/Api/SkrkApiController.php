@@ -16,7 +16,7 @@ class SkrkApiController extends Controller
     public function json(Request $request){
         // $data = Skrk::select('*');
         if ($request->ajax()) {
-            $data = Skrk::select('gid','no_upt_imb','kelurahan','kecamatan','persil_imb','no_imb','no_skrk','nama_jalan','alamat_pem','nama_pemoh','no_imb','no_skrk')->where('no_imb', '!=', null)->where('no_skrk', '!=', null)->where('alamat_pem', '!=', null);
+            $data = Skrk::select('id_imb','no_upt_imb','kelurahan','kecamatan','persil_imb','no_imb','no_skrk','nama_jalan','alamat_pem','nama_pemoh','no_imb','no_skrk')->where('no_imb', '!=', null)->where('no_skrk', '!=', null)->where('alamat_pem', '!=', null);
             // dd($data);
             return Datatables::of($data)
                     ->addIndexColumn()
@@ -24,11 +24,11 @@ class SkrkApiController extends Controller
                         // $gid = $data->gid;
                         // dd($gid);
                         $view = route('show', $data);
-                        $btn = '<input type="hidden" name="gid" id="gid" value="'.$data->gid.'">';
-                        $btn = $btn . '<a href="'.$view.'" target="_blank" onclick="show_json('.$data->gid.')" data-gid="'.$data->gid.'" class="edit btn btn-info btn-sm mr-2 mb-2">
+                        $btn = '<input type="hidden" name="id_imb" id="id_imb" value="'.$data->id_imb.'">';
+                        $btn = $btn . '<a href="'.$view.'" target="_blank" onclick="show_json('.$data->id_imb.')" data-id_imb="'.$data->id_imb.'" class="edit btn btn-info btn-sm mr-2 mb-2">
                         View
                         </a>';
-                        $btn = $btn . '<a href="javascript:void(0)" onclick="edit_json('.$data->gid.')" data-gid="'.$data->gid.'" data-toggle="modal" data-target="#modal-lg" class="edit btn btn-primary btn-sm mr-2 mb-2">
+                        $btn = $btn . '<a href="javascript:void(0)" onclick="edit_json('.$data->id_imb.')" data-id_imb="'.$data->id_imb.'" data-toggle="modal" data-target="#modal-lg" class="edit btn btn-primary btn-sm mr-2 mb-2">
                         Update
                         </a>';
                         return $btn;
@@ -40,9 +40,9 @@ class SkrkApiController extends Controller
         // return response()->json($data);
     }
 
-    public function show_json($gid)
+    public function show_json($id_imb)
     {
-        $aspects = Skrk::find($gid);
+        $aspects = Skrk::find($id_imb);
         // dd($aspects);
         return response()->json($aspects);
     }
@@ -96,7 +96,7 @@ class SkrkApiController extends Controller
         }
         Skrk::updateOrCreate([
         // Product::update([
-            'gid' => $request->gid
+            'id_imb' => $request->id_imb
         ],
         [
             'no_upt' => $request->no_upt,
@@ -127,16 +127,16 @@ class SkrkApiController extends Controller
 
         return response()->json(['success'=>'Data SKRK saved successfully.']);
     }
-    public function delete_json($gid)
+    public function delete_json($id_imb)
     {
-        $data = Skrk::find($gid);
+        $data = Skrk::find($id_imb);
 
         if (Storage::exists('public/scan_imb/'.$data->scan_imb)) {
             // dd('exist');
             Storage::delete('public/scan_imb/'.$data->scan_imb);
         }
 
-        Skrk::find($gid)->delete();
+        Skrk::find($id_imb)->delete();
       
         return response()->json(['success'=>'Data SKRK deleted successfully.']);
     }

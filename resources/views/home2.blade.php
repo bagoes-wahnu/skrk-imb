@@ -378,11 +378,11 @@
 		//   "responsive": true, "lengthChange": false, "autoWidth": false,
 		//   "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
 		// }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    // show_json(gid)
+    // show_json(id_imb)
 		// table()
 	});
   // $('body').on('click', '.edit', function () {
-  //     var product_id = $(this).data('gid');
+  //     var product_id = $(this).data('id_imb');
   //     console.log(product_id);
   //     $.get(baseUrl+"api/tower/show_json" +'/' + product_id , function (data) {
   //           $('#modelHeading').html("Edit Product");
@@ -413,7 +413,7 @@
 			},
 			"columns": [
 			// {data: 'DT_RowIndex', name: 'id'},
-			{data: 'gid', name: 'gid'},
+			{data: 'id_imb', name: 'id_imb'},
       {data: 'sk_imb'},
 			{data: 'provider'},
       {data: 'kelurahan'},
@@ -428,16 +428,15 @@
       // 'order' : [[0,'desc']]
 		});
   }
-  function show_json(gid){
-    // console.log($('#gid').val(data.gid));
-    console.log(gid)
+  function show_json(id_imb){
+    console.log(id_imb)
     $.ajax({
         type: "GET",
         headers: {
           "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
           "Authorization":"Bearer " + localStorage.getItem("token")
         },
-        url: baseUrl+"api/tower/show_json/"+gid,
+        url: baseUrl+"api/tower/show_json/"+id_imb,
         success: function (response) {
           res = response;
           if (res.no_skrk == null) {res.no_skrk = ""}
@@ -570,16 +569,15 @@
         // },
     });
   }
-  function edit_json(gid){
-    // console.log($('#gid').val(data.gid));
-    console.log($("#gid").val())
+  function edit_json(id_imb){
+    console.log($("#id_imb").val())
     $.ajax({
         type: "GET",
         headers: {
           "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
           "Authorization":"Bearer " + localStorage.getItem("token")
         },
-        url: baseUrl+"api/tower/show_json/"+gid,
+        url: baseUrl+"api/tower/show_json/"+id_imb,
         success: function (response) {
           res = response;
           if (res.no_skrk == null) {res.no_skrk = ""}
@@ -604,15 +602,15 @@
           if (res.scan_gambar_imb == null) {res.scan_gambar_imb = ""}
           if (res.scan_zoning == null) {res.scan_zoning = ""}
           if (res.jenis_data == null) {res.jenis_data = ""}
-          console.log(baseUrl+"api/tower/store_json/"+gid);
+          console.log(baseUrl+"api/tower/store_json/"+id_imb);
           console.log(res);
             $('#edit-modal').html(
               `
-              <form action="`+baseUrl+`"api/tower/store_json/"`+gid+`" id="input-menara" method="POST" enctype="multipart/form-data">
+              <form action="`+baseUrl+`"api/tower/store_json/"`+id_imb+`" id="input-menara" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="emp_scan_imb" id="emp_scan_imb">
                 <input type="hidden" name="emp_scan_gambar_imb" id="emp_scan_gambar_imb">
                 <input type="hidden" name="emp_scan_zoning" id="emp_scan_zoning">
-                <input type="hidden" name="gid" id="gid" class="form-control" value="`+res.gid+`">
+                <input type="hidden" name="id_imb" id="id_imb" class="form-control" value="`+res.id_imb+`">
                 <div class="form-group">
                     <label for="inputClientCompany">Provider</label>
                     <input type="text" name="provider" id="provider" class="form-control" value="`+res.provider+`">
@@ -674,17 +672,17 @@
             $('.modal-footer-edit').html(
               `
               <button type="button" class="btn btn-default ml-3" data-dismiss="modal">Close</button>
-              <button type="button" onclick="store_json(`+gid+`)" class="btn btn-success float-right mb-3 mr-3 toastrDefaultSuccess">Save changes</button>
+              <button type="button" onclick="store_json(`+id_imb+`)" class="btn btn-success float-right mb-3 mr-3 toastrDefaultSuccess">Save changes</button>
               </form>
               `
             )
         }
     });
   }
-  function store_json(gid){
-    console.log($("#gid").val())
+  function store_json(id_imb){
+    console.log($("#id_imb").val())
     var data = {
-      gid: $("#gid").val(),
+      id_imb: $("#id_imb").val(),
       provider: $("#provider").val(),
       tipe_tower: $("#tipe_tower").val(),
       tinggi_tower: $("#tinggi_tower").val(),
@@ -708,7 +706,7 @@
           "Authorization":"Bearer " + localStorage.getItem("token")
         },
         data: fd,
-        url: baseUrl+"api/tower/store_json/"+gid,
+        url: baseUrl+"api/tower/store_json/"+id_imb,
         success: function (response) {
           // res = response;
           // console.log(res);
@@ -718,17 +716,17 @@
         }
     });
   }
-  function alert(gid) {
+  function alert(id_imb) {
     $('.modal-footer-alert').html(
       `
         <button type="button" class="btn btn-default ml-3" data-dismiss="modal">Close</button>
-        <button type="button" onclick="delete_json(`+gid+`)" class="btn btn-danger float-right mb-3 mr-3">Hapus</button>
+        <button type="button" onclick="delete_json(`+id_imb+`)" class="btn btn-danger float-right mb-3 mr-3">Hapus</button>
       `
     )
   }
-  function delete_json(gid){
+  function delete_json(id_imb){
     $('#modal-sm').modal('hide')
-    console.log(gid)
+    console.log(id_imb)
     alert('delete');
     $.ajax({
         type: "DELETE",
@@ -737,7 +735,7 @@
           "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
           "Authorization":"Bearer " + localStorage.getItem("token")
         },
-        url: baseUrl+"api/tower/delete_json/"+gid,
+        url: baseUrl+"api/tower/delete_json/"+id_imb,
         success: function (response) {
           // res = response;
           // console.log(res);

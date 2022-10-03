@@ -11,9 +11,9 @@ class HomeController extends Controller
     {
         return view('home1');
     }
-    public function show($gid)
+    public function show($id_imb)
     {
-        $aspects = Skrk::findOrFail($gid);
+        $aspects = Skrk::findOrFail($id_imb);
         return view('home2', compact('aspects'));
     }
 }
