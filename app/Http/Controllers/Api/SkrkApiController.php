@@ -16,7 +16,7 @@ class SkrkApiController extends Controller
     public function json(Request $request){
         // $data = Skrk::select('*');
         if ($request->ajax()) {
-            $data = Skrk::select('id_imb','no_upt_imb','kelurahan','kecamatan','persil_imb','no_imb','no_skrk','nama_jalan','alamat_pem','nama_pemoh','no_imb','no_skrk')->where('no_imb', '!=', null)->where('no_skrk', '!=', null)->where('alamat_pem', '!=', null);
+            $data = Skrk::select('id_imb','no_upt_imb','kelurahan','kecamatan','persil_imb','no_imb','no_skrk','nama_jalan','alamat_pemohon_imb','nama_pemohon_imb','no_imb','no_skrk')->where('no_imb', '!=', null)->where('no_skrk', '!=', null)->where('alamat_pemohon_imb', '!=', null);
             // dd($data);
             return Datatables::of($data)
                     ->addIndexColumn()

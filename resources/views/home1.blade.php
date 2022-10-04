@@ -137,8 +137,8 @@
                     <th>No SKRK</th>
                     <th>Persil IMB</th>
                     <th>Nama Jalan</th>
-                    <th>Nama Pemohon</th>
-                    <th>Alamat Pemohon</th>
+                    <th>Nama Pemohon IMB</th>
+                    <th>Alamat Pemohon IMB</th>
                     {{-- <th>Kelurahan</th> --}}
                     {{-- <th>Kecamatan</th> --}}
                     <th>Action</th>
@@ -321,8 +321,8 @@
       {data: 'no_skrk'},
       {data: 'persil_imb'},
       {data: 'nama_jalan'},
-      {data: 'nama_pemoh'},
-      {data: 'alamat_pem'},
+      {data: 'nama_pemohon_imb'},
+      {data: 'alamat_pemohon_imb'},
 			// {data: 'kelurahan'},
 			// {data: 'kecamatan'},
 			{data: 'action', orderable: false, searcable: false}
