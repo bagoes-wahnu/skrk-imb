@@ -195,7 +195,7 @@
                     </tr>
                     <tr>
                       <th>Nama Pemohon IMB</th>
-                      <td>{{ $aspects->nama_pemoh }}</td>
+                      <td>{{ $aspects->nama_pemohon_imb }}</td>
                     </tr>
                     <tr>
                       <th>Alamat Persil IMB</th>
@@ -203,11 +203,11 @@
                     </tr>
                     <tr>
                       <th>Penggunaan</th>
-                      <td>{{ $aspects->pengguna_1 }}</td>
+                      <td>{{ $aspects->penggunaan }}</td>
                     </tr>
                     <tr>
                       <th>Luas Bangunan</th>
-                      <td>{{ $aspects->luas_bangu }}</td>
+                      <td>{{ $aspects->luas_bangunan }}</td>
                     </tr>
                     <tr>
                       <th>Tinggi Bangunan</th>
