@@ -159,15 +159,15 @@
                     </tr>
                     <tr>
                       <th>Alamat Persil SKRK</th>
-                      <td>{{ $aspects->alamat_per }}</td>
+                      <td>{{ $aspects->alamat_persil }}</td>
                     </tr>
                     <tr>
-                      <th>Permohonan</th>
+                      <th>Permohonan Penggunaan</th>
                       <td>{{ $aspects->permohonan }}</td>
                     </tr>
                     <tr>
                       <th>Peruntukan</th>
-                      <td>{{ $aspects->peruntukan }}</td>
+                      <td>{{ $aspects->peruntukan_ruang }}</td>
                     </tr>
                     <tr>
                       <th>Kelurahan</th>
@@ -211,11 +211,11 @@
                     </tr>
                     <tr>
                       <th>Tinggi Bangunan</th>
-                      <td>{{ $aspects->tinggi_ban }}</td>
+                      <td>{{ $aspects->tinggi_bangunan }}</td>
                     </tr>
                     <tr>
                       <th>Jumlah Lantai</th>
-                      <td>{{ $aspects->jumlah_lan }}</td>
+                      <td>{{ $aspects->jumlah_lantai }}</td>
                     </tr>
                     <tr>
                       <th><hr></th>
@@ -235,7 +235,7 @@
                     </tr>
                     <tr>
                       <th>File Gambar IMB</th>
-                      <td><a href="{{asset("storage/scan_gambar_imb/$aspects->scan_gamba")}}" target="_blank">{{ $aspects->scan_gamba }}</a></td>
+                      <td><a href="{{asset("storage/scan_gambar_imb/$aspects->scan_gambar")}}" target="_blank">{{ $aspects->scan_gambar }}</a></td>
                     </tr>
                   </table>
                 </div>

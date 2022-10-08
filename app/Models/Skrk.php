@@ -9,7 +9,7 @@ class Skrk extends Model
 {
     use HasFactory;
 
-    protected $primarykey = 'id_imb';
+    protected $primaryKey = 'id_imb';
 
     protected $guarded = [];
 

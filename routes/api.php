@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/skrk/json', [SkrkApiController::class,'json'])->name('skrk.json');
+Route::get('/skrk/search_json', [SkrkApiController::class,'search_json'])->name('skrk.search.json');
 Route::get('/skrk/show_json/{id_imb}', [SkrkApiController::class,'show_json'])->name('skrk.show.json');
-Route::post('/skrk/store_json/{id_imb}', [SkrkApiController::class,'store_json'])->name('skrk.store.json');
+Route::post('/skrk/store_json', [SkrkApiController::class,'store_json'])->name('skrk.store.json');
 Route::delete('/skrk/delete_json/{id_imb}', [SkrkApiController::class,'delete_json'])->name('skrk.delete.json');
